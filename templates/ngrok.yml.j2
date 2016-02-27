@@ -1,7 +1,7 @@
 authtoken: {{ ngrok_authtoken }}
 log_format: json
 log_level: debug
-log: /vagrant/ngrok.log
+log: {{ ngrok_dir }}/log/ngrok.log
 tunnels:
 {% for site in sites %}
   {{ site }}-tls:

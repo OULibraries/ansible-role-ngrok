@@ -10,6 +10,7 @@
   with_items:
   - bin
   - etc
+  - log
 - name: Check for ngrok
   stat: "path={{ ngrok_dir }}/bin/ngrok"
   register: ngrok
