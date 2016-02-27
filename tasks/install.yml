@@ -16,25 +16,20 @@
 - name: Get ngrok
   get_url:
     dest: "{{ ngrok_dir }}/"
-    url: https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip
+    url: https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
   when: ngrok.stat.exists == False
 - name: Unpack ngrok
   unarchive:
-    src: "{{ ngrok_dir }}/ngrok_2.0.19_linux_amd64.zip"
+    src: "{{ ngrok_dir }}/ngrok-stable-linux-amd64.zip"
     dest: "{{ ngrok_dir }}/bin/"
     copy: no
   when: ngrok.stat.exists == False
-- name: ngrok service uninstalled
-  command: ngrok service uninstall
+- name: Kill ngrok if running
+  command: killall ngrok
   ignore_errors: yes
 - name: ngrok configuration file
   template:
     src: ngrok.yml.j2
-    dest: "{{ ngrok_dir }}/ngrok.yml"
-- name: ngrok service install
-  shell: "{{ ngrok_dir }}/bin/ngrok service install -config {{ ngrok_dir }}/etc/ngrok.yml"
-- name: ngrok started
-  service:
-    name: ngrok
-    state: started
-    enabled: yes
+    dest: "{{ ngrok_dir }}/etc/ngrok.yml"
+- name: ngrok running
+  shell: "nohup {{ ngrok_dir }}/bin/ngrok start --all -config {{ ngrok_dir }}/etc/ngrok.yml &"

@@ -7,9 +7,9 @@ tunnels:
   {{ site }}-tls:
     hostname: {{ site }}.{{ ngrok_dn_suffix }}
     proto: tls
-    addr: {% if ngrok_app == 'apache2' %}443{% elif ngrok_app == 'tomcat' %}8443{% endif %}
+    addr: {{ ngrok_tls_port }}
   {{ site }}-http:
     hostname: {{ site }}.{{ ngrok_dn_suffix }}
     proto: http
-    addr: {% if ngrok_app == 'apache2' %}80{% elif ngrok_app == 'tomcat' %}8080{% endif %}
+    addr: {{ ngrok_http_port }}
 {% endfor %}
