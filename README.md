@@ -14,14 +14,17 @@ Role Variables
 Expects ngrok_authtoken.  Get one at [ngrok.com](https://ngrok.com/signup)
 There is no default for this value, because that wouldn't work.
 
-We use TLS tunnels, so you'll need a paid account that supports that mode.  If you want to run insecure tunnels, go fish.
+Things with defaults:
 
-Epects ngrok_dn_suffix, which defaults to 'ngrok.io'
+```
+ngrok_dir: '/opt/oulib/ngrok'
+ngrok_port: '80'
+ngrok_dn_suffix: 'ngrok.io'
+ngrok_tunnel_proto: 'tls'
+sites: ['example']
+```
 
-Expects sites, which defaults to ['example']
-As you can probably guess, you may specify multiple sites.
-
-This would get you a tunnel at:
+This would get you a tls tunnel at:
 example.ngrok.io
 
 Dependencies
