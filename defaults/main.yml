@@ -1,4 +1,5 @@
 ---
 ## defaults file for ngrok
+ngrok_dir: '/opt/oulib/ngrok'
 ngrok_dn_suffix: 'ngrok.io'
 sites: ['example']

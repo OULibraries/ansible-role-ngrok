@@ -1,10 +1,40 @@
 ---
+- name: ngrok directory
+  file:
+    path: "{{ ngrok_dir }}/{{ item }}"
+    state: directory
+    mode: 0655
+    owner: root
+    group: wheel
+    recurse: yes
+  with_items:
+  - bin
+  - etc
 - name: Check for ngrok
-  stat: path=/vagrant/ngrok_2.0.19_linux_amd64.zip
+  stat: "path={{ ngrok_dir }}/bin/ngrok"
   register: ngrok
 - name: Get ngrok
-  get_url: url=https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip dest=/vagrant
+  get_url:
+  dest: "{{ ngrok_dir }}/"
+  url: https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip dest=/vagrant
   when: ngrok.stat.exists == False
 - name: Unpack ngrok
-  unarchive: src=/vagrant/ngrok_2.0.19_linux_amd64.zip dest=/vagrant/ copy=no
+  unarchive:
+    src: "{{ ngrok_dir }}/ngrok_2.0.19_linux_amd64.zip"
+    dest: "{{ ngrok_dir }}/bin/"
+    copy: no
   when: ngrok.stat.exists == False
+- name: ngrok service uninstalled
+  command: ngrok service uninstall
+  ignore_errors: yes
+- name: ngrok configuration file
+  template:
+    src: ngrok.yml.j2
+    dest: "{{ ngrok_dir }}/ngrok.yml"
+- name: ngrok service install
+  shell: "{{ ngrok_dir }}/bin/ngrok service install -config {{ ngrok_dir }}/etc/ngrok.yml"
+- name: ngrok started
+  service:
+    name: ngrok
+    state: started
+    enabled: yes
