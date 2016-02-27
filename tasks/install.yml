@@ -15,8 +15,8 @@
   register: ngrok
 - name: Get ngrok
   get_url:
-  dest: "{{ ngrok_dir }}/"
-  url: https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip dest=/vagrant
+    dest: "{{ ngrok_dir }}/"
+    url: https://dl.ngrok.com/ngrok_2.0.19_linux_amd64.zip
   when: ngrok.stat.exists == False
 - name: Unpack ngrok
   unarchive:
