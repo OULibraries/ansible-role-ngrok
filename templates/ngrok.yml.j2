@@ -7,5 +7,5 @@ tunnels:
   {{ site }}-{{ ngrok_tunnel_proto }}:
     hostname: {{ site }}.{{ ngrok_dn_suffix }}
     proto: {{ ngrok_tunnel_proto }}
-    addr: {{ ngrok_tls_port }}
+    addr: {{ ngrok_port }}
 {% endfor %}

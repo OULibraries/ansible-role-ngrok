@@ -1,8 +1,7 @@
 ---
 ## defaults file for ngrok
 ngrok_dir: '/opt/oulib/ngrok'
-ngrok_http_port: '80'
-ngrok_tls_port: '443'
+ngrok_port: '80'
 ngrok_dn_suffix: 'ngrok.io'
 ngrok_tunnel_proto: 'tls'
 sites: ['example']
