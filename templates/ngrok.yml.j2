@@ -4,12 +4,8 @@ log_level: debug
 log: {{ ngrok_dir }}/log/ngrok.log
 tunnels:
 {% for site in sites %}
-  {{ site }}-tls:
+  {{ site }}-{{ ngrok_tunnel_proto }}:
     hostname: {{ site }}.{{ ngrok_dn_suffix }}
-    proto: tls
+    proto: {{ ngrok_tunnel_proto }}
     addr: {{ ngrok_tls_port }}
-  {{ site }}-http:
-    hostname: {{ site }}.{{ ngrok_dn_suffix }}
-    proto: http
-    addr: {{ ngrok_http_port }}
 {% endfor %}
