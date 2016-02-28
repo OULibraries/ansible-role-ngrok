@@ -6,7 +6,7 @@ OU Libraries ngrok Server.
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+If you are using this role, it's because you are hoping to make your local web service accessible from the internet.  That means that you need a local web server (such as apache, nginx, or tomcat) to connect to.
 
 Role Variables
 --------------
@@ -30,7 +30,7 @@ example.ngrok.io
 Dependencies
 ------------
 
-Requires OU Libraries centos7 and apache2 roles. To install:
+Requires OU Libraries centos7 role. To install:
 ```
 ansible-galaxy install -r requirements.yml
 ```
