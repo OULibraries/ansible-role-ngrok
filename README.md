@@ -18,14 +18,15 @@ Things with defaults:
 
 ```
 ngrok_dir: '/opt/oulib/ngrok'
-ngrok_port: '443'
-ngrok_dn_suffix: 'ngrok.io'
-ngrok_tunnel_proto: 'tls'
-sites: ['example']
+tunnels:
+- { name: 'example', dn_suffix: 'ngrok.io', port: '443', proto: 'tls' }
+
 ```
 
 This would get you a tls tunnel at:
 example.ngrok.io
+
+You can add multiple entries under tunnels. Each entry requires name, dn_suffx, port, and proto as shown.
 
 Dependencies
 ------------
