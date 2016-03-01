@@ -33,5 +33,5 @@
     src: ngrok.yml.j2
     dest: "{{ ngrok_dir }}/etc/ngrok.yml"
 - name: ngrok tls tunnels running
-  shell: "nohup {{ ngrok_dir }}/bin/ngrok start {{ item }}-{{ ngrok_tunnel_proto }} --config {{ ngrok_dir }}/etc/ngrok.yml &"
-  with_items: "{{ sites }}"
+  shell: "nohup {{ ngrok_dir }}/bin/ngrok start {{ item.name }}-{{ item.proto }} --config {{ ngrok_dir }}/etc/ngrok.yml &"
+  with_items: "{{ tunnels }}"

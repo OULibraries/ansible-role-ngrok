@@ -3,9 +3,9 @@ log_format: json
 log_level: debug
 log: {{ ngrok_dir }}/log/ngrok.log
 tunnels:
-{% for site in sites %}
-  {{ site }}-{{ ngrok_tunnel_proto }}:
-    hostname: {{ site }}.{{ ngrok_dn_suffix }}
-    proto: {{ ngrok_tunnel_proto }}
-    addr: {{ ngrok_port }}
+{% for tunnel in tunnels %}
+  {{ tunnel.name }}-{{ tunnel.proto }}:
+    hostname: {{ tunnel.name }}.{{ tunnel.dn_suffix }}
+    proto: {{ tunnel.proto }}
+    addr: {{ tunnel.port }}
 {% endfor %}
