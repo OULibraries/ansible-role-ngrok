@@ -2,4 +2,7 @@
 ## defaults file for ngrok
 ngrok_dir: '/opt/oulib/ngrok'
 tunnels:
-- { name: 'example', dn_suffix: 'ngrok.io', port: '443', proto: 'tls' }
+  - name: 'example'
+    dn_suffix: 'ngrok.io'
+    port: '443'
+    proto: 'tls'

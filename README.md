@@ -18,9 +18,12 @@ Things with defaults:
 
 ```
 ngrok_dir: '/opt/oulib/ngrok'
-tunnels:
-- { name: 'example', dn_suffix: 'ngrok.io', port: '443', proto: 'tls' }
 
+tunnels:
+  - name: 'example'
+    dn_suffix: 'ngrok.io'
+    port: '443'
+    proto: 'tls'
 ```
 
 This would get you a tls tunnel at:
