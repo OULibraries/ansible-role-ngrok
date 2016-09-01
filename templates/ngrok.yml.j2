@@ -4,8 +4,8 @@ log_level: debug
 log: {{ ngrok_dir }}/log/ngrok.log
 tunnels:
 {% for tunnel in tunnels %}
-  {{ tunnel.name }}-{{ tunnel.proto }}:
-    hostname: {{ tunnel.name }}.{{ tunnel.dn_suffix }}
+  "{{ tunnel.name }}-{{ tunnel.proto }}":
+    hostname: "{{ tunnel.name }}.{{ tunnel.dn_suffix }}"
     proto: {{ tunnel.proto }}
     addr: {{ tunnel.port }}
 {% endfor %}
