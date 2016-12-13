@@ -3,7 +3,7 @@
   file:
     path: "{{ ngrok_dir }}/{{ item }}"
     state: directory
-    mode: 0655
+    mode: 0755
     owner: root
     group: wheel
     recurse: yes
@@ -32,6 +32,13 @@
   template:
     src: ngrok.yml.j2
     dest: "{{ ngrok_dir }}/etc/ngrok.yml"
+- name: rc.local
+  template:
+    src: rc.local.j2
+    dest: /etc/rc.d/rc.local
+    mode: 0755
+    owner: root
+    group: root
 - name: ngrok tls tunnels running
   shell: "nohup {{ ngrok_dir }}/bin/ngrok start {{ item.name }}-{{ item.proto }} --config {{ ngrok_dir }}/etc/ngrok.yml &"
   with_items: "{{ tunnels }}"
