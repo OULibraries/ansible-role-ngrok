@@ -1,0 +1,10 @@
+[Unit]
+Description=OULibraries Ngrok Service
+
+[Service]
+ExecStart={{ ngrok_dir }}/bin/ngrok start -all --config {{ ngrok_dir }}/etc/ngrok.yml
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+Alias=oulib-ngrok.service

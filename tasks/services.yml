@@ -1,0 +1,8 @@
+---
+- name: Services restarted
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+  with_items:
+    - oulib-ngrok

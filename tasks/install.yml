@@ -25,20 +25,16 @@
     dest: "{{ ngrok_dir }}/bin/"
     copy: no
   when: ngrok.stat.exists == False
-- name: Kill ngrok if running
-  command: killall ngrok
-  ignore_errors: yes
 - name: ngrok configuration file
   template:
     src: ngrok.yml.j2
     dest: "{{ ngrok_dir }}/etc/ngrok.yml"
-- name: rc.local
+- name: Install oulib-ngrok service
   template:
-    src: rc.local.j2
-    dest: /etc/rc.d/rc.local
-    mode: 0755
+    src: oulib-ngrok.service.j2
+    dest: /lib/systemd/system/oulib-ngrok.service
+    mode: 0644
     owner: root
     group: root
-- name: ngrok tls tunnels running
-  shell: "nohup {{ ngrok_dir }}/bin/ngrok start {{ item.name }}-{{ item.proto }} --config {{ ngrok_dir }}/etc/ngrok.yml &"
-  with_items: "{{ tunnels }}"
+- name: Reload systemd
+  command: systemctl daemon-reload
