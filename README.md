@@ -48,6 +48,12 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: username.rolename, x: 42 }
 
+Usage
+-----
+
+Creates a service called oulib-ngrok, which starts on boot.  All configured tunnels are fired on service start.
+
+
 License
 -------
 
