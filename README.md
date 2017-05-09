@@ -57,7 +57,7 @@ Creates a service called oulib-ngrok, which starts on boot.  All configured tunn
 License
 -------
 
-https://github.com/OULibraries/ansible-role-ngrok/blob/master/LICENSE
+[MIT](https://github.com/OULibraries/ansible-role-ngrok/blob/master/LICENSE)
 
 Author Information
 ------------------
